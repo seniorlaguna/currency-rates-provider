@@ -1,0 +1,11 @@
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    name: Publish currencies and rates
+    steps:
+      - name: Fetch and prepare
+        uses: ./

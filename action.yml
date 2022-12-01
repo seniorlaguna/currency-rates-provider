@@ -2,4 +2,4 @@ name: 'Currency'
 description: 'Fetch and format currency rates'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'dist/index.js'
