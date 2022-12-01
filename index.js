@@ -173,7 +173,7 @@ async function fetchRates() {
         promises.push(promise)
         promise.then((response) => {
             
-            console.log("Response: ", response.data.rates[base])
+            console.log("Response: ", response.data)
 
             rates[base] = {
                 "date" : Date.now()
