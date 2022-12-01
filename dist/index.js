@@ -6354,6 +6354,7 @@ async function fetchRates() {
 
     let rates = {}
     let promises = []
+    let date = Date.now()
 
     for (let i = 0; i < currencies.length; i++) {
         let base = currencies[i].id
@@ -6362,7 +6363,7 @@ async function fetchRates() {
         promises.push(promise)
         promise.then((response) => {
             rates[base] = {
-                "date" : Date.now()
+                "date" : date
             }
 
             for (let c in response.data.rates) {
