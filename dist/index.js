@@ -6377,7 +6377,7 @@ async function fetchRates() {
 
 async function saveRates(rates) {
     let file = fs.openSync("latest/rates.json", "w")
-    fs.writeSync(file, rates)
+    fs.writeSync(file, JSON.stringify(rates))
     fs.closeSync(file)
 }
 
