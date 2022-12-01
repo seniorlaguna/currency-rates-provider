@@ -6385,6 +6385,8 @@ async function main() {
     let rates = await fetchRates()
     saveRates(rates)
 }
+
+main()
 })();
 
 module.exports = __webpack_exports__;

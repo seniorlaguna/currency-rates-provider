@@ -197,3 +197,5 @@ async function main() {
     let rates = await fetchRates()
     saveRates(rates)
 }
+
+main()
