@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const currencies = [
     {id: "aed", flagCode: "ae", decimalPlaces: 2, symbol: " د.إ", format: "value د.إ", bills: [1, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ae"]},
     {id: "afn", flagCode: "af", decimalPlaces: 2, symbol: "؋", format: "value Afs", bills: [1, 2, 5, 10, 20, 50, 100, 500, 1000], countryIds: ["af"]},
