@@ -1,4 +1,5 @@
 const axios = require("axios");
+const fs = require("fs")
 
 const currencies = [
     {id: "aed", flagCode: "ae", decimalPlaces: 2, symbol: " د.إ", format: "value د.إ", bills: [1, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ae"]},
@@ -172,9 +173,6 @@ async function fetchRates() {
         let promise = axios.get(url)
         promises.push(promise)
         promise.then((response) => {
-            
-            console.log("Response: ", response.data)
-
             rates[base] = {
                 "date" : Date.now()
             }
@@ -186,7 +184,16 @@ async function fetchRates() {
     }
 
     await Promise.all(promises)
-    console.log(rates)
+    return rates
 }
 
-fetchRates()
+async function saveRates(rates) {
+    let file = fs.openSync("latest/rates.json", "w")
+    fs.writeSync(file, rates)
+    fs.closeSync(file)
+}
+
+async function main() {
+    let rates = await fetchRates()
+    saveRates(rates)
+}

@@ -3,9 +3,11 @@ on: push
 jobs:
   main:
     runs-on: ubuntu-latest
-    name: Publish currencies and rates
+    name: Publish rates
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Fetch and prepare
         uses: ./
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.1
