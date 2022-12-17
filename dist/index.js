@@ -6189,6 +6189,8 @@ var __webpack_exports__ = {};
 const axios = __nccwpck_require__(19);
 const fs = __nccwpck_require__(147)
 
+const TIMESTAMP_FILE = "latest/timestamp.json"
+
 const currencies = [
     {id: "aed", flagCode: "ae", decimalPlaces: 2, symbol: " د.إ", format: "value د.إ", bills: [1, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ae"]},
     {id: "afn", flagCode: "af", decimalPlaces: 2, symbol: "؋", format: "value Afs", bills: [1, 2, 5, 10, 20, 50, 100, 500, 1000], countryIds: ["af"]},
@@ -6376,6 +6378,29 @@ async function fetchRates() {
     return rates
 }
 
+function ratesAreFromToday(now) {
+    try {
+        if (!fs.existsSync(TIMESTAMP_FILE)) {
+            return false
+        }
+        let lastFetch = new Date(fs.readFileSync(TIMESTAMP_FILE))
+        
+        return now.getDate() == lastFetch.getDate() &&
+               now.getMonth() == lastFetch.getMonth() &&
+               now.getFullYear() == lastFetch.getFullYear()
+
+    } catch {
+        console.log("Error in dates check")
+        return false
+    }
+}
+
+async function saveTimestamp(now) {
+    let file = fs.openSync(TIMESTAMP_FILE, "w")
+    fs.writeSync(file, now.toJSON())
+    fs.closeSync(file)
+}
+
 async function saveRates(rates) {
     let file = fs.openSync("latest/rates.json", "w")
     fs.writeSync(file, JSON.stringify(rates))
@@ -6383,8 +6408,17 @@ async function saveRates(rates) {
 }
 
 async function main() {
+    const now = new Date()
+    if (ratesAreFromToday(now)) {
+        console.log("Rates already fetched for today - Skip fetching")
+        return
+    }
+    console.log("Fetching rates for today")
+
     let rates = await fetchRates()
     saveRates(rates)
+
+    saveTimestamp(now)
 }
 
 main()
