@@ -1,7 +1,7 @@
 on:
   push:
   schedule:
-    - cron: '27 2 * * *'
+    - cron: '*/27 3-21 * * *'
 
 jobs:
   main:
