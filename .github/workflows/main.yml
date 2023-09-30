@@ -12,9 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Fetch and prepare
         uses: ./
-        with:
-          KEY1: ${{ secrets.KEY1 }}
         env:
-          KEY1: $ {{ secrets.KEY1 }}
+          KEY1: ${{ secrets.KEY1 }}
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.1
