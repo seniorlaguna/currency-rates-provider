@@ -76,7 +76,7 @@ const currencies = [
     {id: "kes", flagCode: "ke", decimalPlaces: 2, symbol: "KES", format: "value KES", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ke"]},
     {id: "kgs", flagCode: "kg", decimalPlaces: 2, symbol: "лв", format: "value лв", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kg"]},
     {id: "khr", flagCode: "kh", decimalPlaces: 2, symbol: "៛", format: "value ៛", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kh"]},
-    {id: "kmf", flagCode: "km", decimalPlaces: 2, symbol: "KMF", format: "value KMF", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["km"]},
+    //{id: "kmf", flagCode: "km", decimalPlaces: 2, symbol: "KMF", format: "value KMF", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["km"]},
     {id: "kpw", flagCode: "kp", decimalPlaces: 2, symbol: "₩", format: "value ₩", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kp"]},
     {id: "krw", flagCode: "kr", decimalPlaces: 2, symbol: "₩", format: "value ₩", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kr"]},
     {id: "kwd", flagCode: "kw", decimalPlaces: 2, symbol: "KWD", format: "value KWD", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kw"]},
