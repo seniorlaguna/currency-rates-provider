@@ -3,10 +3,14 @@ const fs = require("fs")
 
 const TIMESTAMP_FILE = "latest/timestamp.json"
 
+const available = [
+    "eur","usd","jpy","bgn","czk","dkk","gbp","huf","pln","ron","sek","chf","isk","nok","hrk","rub","try","aud","brl","cad","cny","hkd","idr","ils","inr","krw","mxn","myr","nzd","php","sgd","thb","zar"
+]
+
 const currencies = [
     {id: "aed", flagCode: "ae", decimalPlaces: 2, symbol: " د.إ", format: "value د.إ", bills: [1, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ae"]},
     {id: "afn", flagCode: "af", decimalPlaces: 2, symbol: "؋", format: "value Afs", bills: [1, 2, 5, 10, 20, 50, 100, 500, 1000], countryIds: ["af"]},
-    //{id: "all", flagCode: "al", decimalPlaces: 2, symbol: "Lek", format: "value Lek", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["al"]},
+    {id: "all", flagCode: "al", decimalPlaces: 2, symbol: "Lek", format: "value Lek", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["al"]},
     {id: "amd", flagCode: "am", decimalPlaces: 2, symbol: "AMD", format: "value AMD", bills: [100, 500, 1000, 5000, 10000, 20000, 50000, 100000], countryIds: ["am"]},
     {id: "ang", flagCode: "sx", decimalPlaces: 2, symbol: "ƒ", format: "value ƒ", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["cw", "sx"]},
     {id: "aoa", flagCode: "ao", decimalPlaces: 2, symbol: "AOA", format: "value AOA", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ao"]},
@@ -76,7 +80,7 @@ const currencies = [
     {id: "kes", flagCode: "ke", decimalPlaces: 2, symbol: "KES", format: "value KES", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ke"]},
     {id: "kgs", flagCode: "kg", decimalPlaces: 2, symbol: "лв", format: "value лв", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kg"]},
     {id: "khr", flagCode: "kh", decimalPlaces: 2, symbol: "៛", format: "value ៛", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kh"]},
-    //{id: "kmf", flagCode: "km", decimalPlaces: 2, symbol: "KMF", format: "value KMF", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["km"]},
+    {id: "kmf", flagCode: "km", decimalPlaces: 2, symbol: "KMF", format: "value KMF", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["km"]},
     {id: "kpw", flagCode: "kp", decimalPlaces: 2, symbol: "₩", format: "value ₩", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kp"]},
     {id: "krw", flagCode: "kr", decimalPlaces: 2, symbol: "₩", format: "value ₩", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kr"]},
     {id: "kwd", flagCode: "kw", decimalPlaces: 2, symbol: "KWD", format: "value KWD", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["kw"]},
@@ -176,6 +180,11 @@ async function fetchRates() {
 
     for (let i = 0; i < currencies.length; i++) {
         let base = currencies[i].id
+
+        if (!available.includes(base)) {
+            continue
+        }
+
         let url = "https://api.freecurrencyapi.com/v1/latest?base_currency=" + base + "&apikey=" + apiKey
         let promise = axios.get(url)
         promises.push(promise)
