@@ -170,12 +170,13 @@ async function fetchRates() {
     let promises = []
     let date = Date.now()
     let apiKey = process.env.KEY1
+
     console.log(process.env)
     console.log("API KEY: " + apiKey)
 
     for (let i = 0; i < currencies.length; i++) {
         let base = currencies[i].id
-        let url = "http://api.exchangerate.host/live?base=" + base + "&access_key=" + apiKey
+        let url = "https://api.freecurrencyapi.com/v1/latest?base_currency=" + base + "&apikey=" + apiKey
         let promise = axios.get(url)
         promises.push(promise)
         promise.then((response) => {
@@ -184,8 +185,8 @@ async function fetchRates() {
                 "date" : date
             }
 
-            for (let c in response.data.quotes) {
-                rates[base][c.toLowerCase().substring(base.length)] = response.data.quotes[c]
+            for (let c in response.data.data) {
+                rates[base][c.toLowerCase()] = response.data.data[c]
             }
         })
     }
