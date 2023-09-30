@@ -6373,7 +6373,7 @@ async function fetchRates() {
             continue
         }
 
-        let url = "https://api.freecurrencyapi.com/v1/latest?base_currency=" + base + "&apikey=" + apiKey
+        let url = "https://api.freecurrencyapi.com/v1/latest?base_currency=" + base.toUpperCase() + "&apikey=" + apiKey
         let promise = axios.get(url)
         promises.push(promise)
         promise.then((response) => {
