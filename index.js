@@ -2,6 +2,7 @@ const axios = require("axios");
 const fs = require("fs")
 
 const TIMESTAMP_FILE = "latest/timestamp.json"
+const CURRENCIES_FILE = "latest/currencies.json"
 
 const available = [
     "eur","usd","jpy","bgn","czk","dkk","gbp","huf","pln","ron","sek","chf","isk","nok","hrk","rub","try","aud","brl","cad","cny","hkd","idr","ils","inr","krw","mxn","myr","nzd","php","sgd","thb","zar"
@@ -230,6 +231,13 @@ async function saveTimestamp(now) {
     fs.closeSync(file)
 }
 
+async function saveCurrencies() {
+    let file = fs.openSync(CURRENCIES_FILE, "w")
+    fs.writeSync(file, currencies.filter((c) => available.includes(c.id)))
+    fs.closeSync(file)
+}
+
+
 async function saveRates(rates) {
     let file = fs.openSync("latest/rates.json", "w")
     fs.writeSync(file, JSON.stringify(rates))
@@ -242,6 +250,9 @@ async function main() {
         console.log("Rates already fetched for today - Skip fetching")
         return
     }
+    
+    saveCurrencies()
+
     console.log("Fetching rates for today")
 
     let rates = await fetchRates()
