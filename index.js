@@ -177,6 +177,7 @@ async function fetchRates() {
         let promise = axios.get(url)
         promises.push(promise)
         promise.then((response) => {
+            console.log(response.data)
             rates[base] = {
                 "date" : date
             }
