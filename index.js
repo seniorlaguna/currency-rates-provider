@@ -170,6 +170,8 @@ async function fetchRates() {
     let promises = []
     let date = Date.now()
     let apiKey = process.env.KEY1
+    console.log(process.env)
+    console.log("API KEY: " + apiKey)
 
     for (let i = 0; i < currencies.length; i++) {
         let base = currencies[i].id
