@@ -6194,7 +6194,7 @@ const TIMESTAMP_FILE = "latest/timestamp.json"
 const currencies = [
     {id: "aed", flagCode: "ae", decimalPlaces: 2, symbol: " د.إ", format: "value د.إ", bills: [1, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ae"]},
     {id: "afn", flagCode: "af", decimalPlaces: 2, symbol: "؋", format: "value Afs", bills: [1, 2, 5, 10, 20, 50, 100, 500, 1000], countryIds: ["af"]},
-    {id: "all", flagCode: "al", decimalPlaces: 2, symbol: "Lek", format: "value Lek", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["al"]},
+    //{id: "all", flagCode: "al", decimalPlaces: 2, symbol: "Lek", format: "value Lek", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["al"]},
     {id: "amd", flagCode: "am", decimalPlaces: 2, symbol: "AMD", format: "value AMD", bills: [100, 500, 1000, 5000, 10000, 20000, 50000, 100000], countryIds: ["am"]},
     {id: "ang", flagCode: "sx", decimalPlaces: 2, symbol: "ƒ", format: "value ƒ", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["cw", "sx"]},
     {id: "aoa", flagCode: "ao", decimalPlaces: 2, symbol: "AOA", format: "value AOA", bills: [1, 2, 5, 10, 20, 50, 100, 200, 500], countryIds: ["ao"]},
