@@ -6374,6 +6374,9 @@ async function fetchRates() {
         }
 
         let url = "https://api.freecurrencyapi.com/v1/latest?base_currency=" + base.toUpperCase() + "&apikey=" + apiKey
+        
+        await new Promise(resolve => setTimeout(resolve, 8))
+
         let promise = axios.get(url)
         promises.push(promise)
         promise.then((response) => {
