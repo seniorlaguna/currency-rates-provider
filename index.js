@@ -233,7 +233,7 @@ async function saveTimestamp(now) {
 
 async function saveCurrencies() {
     let file = fs.openSync(CURRENCIES_FILE, "w")
-    fs.writeSync(file, currencies.filter((c) => available.includes(c.id)))
+    fs.writeSync(file, JSON.stringify(currencies.filter((c) => available.includes(c.id))))
     fs.closeSync(file)
 }
 
@@ -250,7 +250,7 @@ async function main() {
         console.log("Rates already fetched for today - Skip fetching")
         return
     }
-    
+
     saveCurrencies()
 
     console.log("Fetching rates for today")
